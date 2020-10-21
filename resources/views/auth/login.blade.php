@@ -32,6 +32,12 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition login-page">
+@if ($message = Session::get('status'))
+    <div class="alert alert-warning alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <strong> {{ $message }} </strong>
+    </div>
+@endif
 <div class="login-box">
   <div class="login-logo">
     <a href="../../index2.html"><b>Abus</b>v.0.0.1</a>
@@ -42,17 +48,12 @@
 
     <form action="{{ route('login') }}" method="post">
         @csrf
-      <div class="form-group {{ $errors->has('username') || $errors->has('email') ? 'has-error' : '' }}">
-      <input type="text" name="username" class="form-control {{ $errors->has('username') || $errors->has('email') ? 'is-invalid' : '' }}" value="{{ old('username') }}" placeholder="{{ __('Email atau Username') }}" autofocus>
+      <div class="form-group {{ $errors->has('username') || $errors->has('username') ? 'has-error' : '' }}">
+      <input type="text" name="username" class="form-control {{ $errors->has('username') || $errors->has('username') ? 'is-invalid' : '' }}" value="{{ old('username') }}" placeholder="{{ __('Email atau Username') }}" autofocus>
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
         @if ($errors->has('username'))
             <div class="help-block" role="alert">
                 <strong>{{ $errors->first('username') }}</strong>
-            </div>
-        @endif
-        @if ($errors->has('email'))
-            <div class="help-block" role="alert">
-            <strong>{{ $errors->first('email') }}</strong>
             </div>
         @endif
       </div>
@@ -81,7 +82,7 @@
       </div>
     </form>
 
-    <div class="social-auth-links text-center">
+    {{-- <div class="social-auth-links text-center">
       <p>- ATAU -</p>
       <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Login Menggunakan
         Facebook</a>
@@ -89,14 +90,14 @@
         Google+</a>
         <a href="#" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-comment"></i> Login Menggunakan
         SMS</a>
-    </div>
+    </div> --}}
     <!-- /.social-auth-links -->
 
-    @if (Route::has('password.request'))
+    {{-- @if (Route::has('password.request'))
         <a class="btn btn-link" href="{{ route('password.request') }}">
         {{ __('Forgot Your Password?') }}
         </a>
-    @endif
+    @endif --}}
     <a href="{{ route('register') }}" class="text-center">Register User Baru</a>
 
   </div>

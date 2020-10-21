@@ -70,8 +70,22 @@
             </span>
         @enderror
       </div>
+      {{--JENIS KELAMIN--}}
+
+      <div class="form-group">
+        <label for="jenis_kelamin">
+            <input type="radio" name="jenis_kelamin" value="Laki-laki" checked> Laki-Laki
+            <input type="radio" name="jenis_kelamin" value="Perempuan" > Perempuan
+        </label>
+        @error('jenis_kelamin')
+            <span class="help-block" role="alert">
+            <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+
       <div class="form-group @error('no_hp') has-error @enderror">
-        <input type="text" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" placeholder="No. Handphone" value="+62">
+        <input type="text" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" placeholder="No. Handphone">
         <span class="glyphicon glyphicon-phone form-control-feedback"></span>
         @error('no_hp')
             <span class="help-block" role="alert">
@@ -108,13 +122,13 @@
       </div>
     </form>
 
-    <div class="social-auth-links text-center">
+    {{-- <div class="social-auth-links text-center">
       <p>- ATAU -</p>
       <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign up using
         Facebook</a>
       <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign up using
         Google+</a>
-    </div>
+    </div> --}}
 
     <a href="{{ route('login') }}" class="text-center">Sudah Punya Akun</a>
   </div>

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return redirect(route('login'));
+    //auth()->user()->assignRole('super-admin');
 });
 
 Route::get('/invoice', function () {
@@ -24,12 +26,13 @@ Route::get('/invoice', function () {
     return $pdf->download('invoice.pdf');
 });
 
-Auth::routes(['verify' => true]);
+//Auth::routes(['verify' => true]);
+Auth::routes();
 Route::group(['middleware' => 'auth'], function() {
 
     //Route yang berada dalam group ini hanya dapat diakses oleh user
-    //yang memiliki role admin
-    Route::group(['middleware' => ['role:admin']], function () {
+    //yang memiliki role super-admin
+    Route::group(['middleware' => ['role:super-admin|Kepala Puskesmas']], function () {
         Route::resource('/role', 'RoleController')->except([
             'create', 'show', 'edit', 'update'
         ]);
@@ -55,11 +58,15 @@ Route::group(['middleware' => 'auth'], function() {
         });
 
         //route group untuk kasir
-    Route::group(['middleware' => ['role:kasir']], function() {
+        Route::group(['middleware' => ['role:admin|kasir']], function() {
+            Route::get('/transaksi', 'OrderController@addOrder')->name('order.transaksi');
+        });
 
-    });
 
     //home kita taruh diluar group karena semua jenis user yg login bisa mengaksesnya
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/profile','ProfileController@index')->name('profile');
+    Route::get('/poned','PonedController@index')->name('poned');
+    Route::get('/poned/jampersal','JampersalController@index')->name('jampersal');
 });
 

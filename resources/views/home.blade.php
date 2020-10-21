@@ -8,7 +8,7 @@
                     <div class="col-md-12">
                         <div class="box">
                             <div class="box-header with-border">
-                                <h3 class="box-title"> Tambah Kategori </h3>
+                                <h3 class="box-title"> Halaman Beranda </h3>
                             </div>
 
                             <div class="box-body">
@@ -19,7 +19,11 @@
                                     </div>
                                 @endif
 
-                                You are logged in!
+                                Selamat Datang di Aplikasi Bantu Puskesmas ( Abus ) Versi 0.0.1
+                                <br>
+                                Abus v.0.0.1 adalah aplikasi versi beta.
+                                <br>
+
                             </div>
                         </div>
                     </div>

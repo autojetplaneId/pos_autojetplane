@@ -55,6 +55,15 @@
                                     <input type="text" name="username" class="form-control {{ $errors->has('username') ? 'is-invalid':'' }}" required>
                                     <p class="text-danger">{{ $errors->first('username') }}</p>
                                 </div>
+                                {{--JENIS KELAMIN--}}
+
+                                <div class="form-group">
+                                    <label for="jenis_kelamin">
+                                        <input type="radio" name="jenis_kelamin" value="Laki-laki" > Laki-Laki
+                                        <input type="radio" name="jenis_kelamin" value="Perempuan" > Perempuan
+                                    </label>
+                                </div>
+
                                 <div class="form-group">
                                     <label for="">No. HP</label>
                                     <input type="text" name="no_hp" class="form-control {{ $errors->has('no_hp') ? 'is-invalid':'' }}" required>
